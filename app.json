@@ -1,5 +1,5 @@
 {
-  "name": "Lights Out",
+  "name": "lightsout",
   "displayName": "Lights Out",
   "android": {
     "package": "com.usefullapps.lightsout"

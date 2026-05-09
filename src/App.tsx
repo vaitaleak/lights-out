@@ -11,17 +11,22 @@ const SIZES = [3, 4, 5, 6];
 function createBoard(size: number): boolean[][] {
   // Start all off, then do random valid moves to ensure solvable
   const board: boolean[][] = Array.from({ length: size }, () => Array(size).fill(false));
-  const moves = size * size;
-  for (let i = 0; i < moves; i++) {
-    const r = Math.floor(Math.random() * size);
-    const c = Math.floor(Math.random() * size);
-    toggleCell(board, r, c, size);
-  }
-  // Ensure not already solved
-  if (board.every(row => row.every(cell => !cell))) {
-    const r = Math.floor(Math.random() * size);
-    const c = Math.floor(Math.random() * size);
-    toggleCell(board, r, c, size);
+  const minOn = Math.max(3, Math.floor(size * size * 0.3));
+  let attempts = 0;
+  do {
+    // Reset board
+    for (let r = 0; r < size; r++) for (let c = 0; c < size; c++) board[r][c] = false;
+    const moves = size * size;
+    for (let i = 0; i < moves; i++) {
+      const r = Math.floor(Math.random() * size);
+      const c = Math.floor(Math.random() * size);
+      toggleCell(board, r, c, size);
+    }
+    attempts++;
+  } while ((board.every(row => row.every(cell => !cell)) || countOn(board) < minOn) && attempts < 50);
+  // Final safety: ensure at least some lights on
+  if (board.every(row => row.every(cell => !cell)) || countOn(board) < 3) {
+    toggleCell(board, Math.floor(size / 2), Math.floor(size / 2), size);
   }
   return board;
 }
@@ -41,7 +46,7 @@ function countOn(board: boolean[][]): number {
 export default function App() {
   const [sizeIdx, setSizeIdx] = useState(1);
   const size = SIZES[sizeIdx];
-  const [board, setBoard] = useState<boolean[][]>(() => createBoard(4));
+  const [board, setBoard] = useState<boolean[][]>(() => createBoard(SIZES[1]));
   const [moves, setMoves] = useState(0);
   const [won, setWon] = useState(false);
   const [time, setTime] = useState(0);

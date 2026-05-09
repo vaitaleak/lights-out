@@ -1,7 +1,11 @@
 module.exports = {
   project: {
     android: {
-      unstable_reactLegacyComponentNames: ['RCTImageView'],
+      packageName: 'com.usefullapps.lightsout',
+      sourceDir: './android',
+      appName: 'lightsout',
+      manifestPath: './app/src/main/AndroidManifest.xml',
     },
+    ios: {},
   },
 };

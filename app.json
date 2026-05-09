@@ -1,12 +1,7 @@
 {
-  "expo": {
-    "name": "Lights Out",
-    "slug": "lights-out",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "android": {
-      "package": "com.usefullapps.lightsout",
-      "versionCode": 1
-    }
+  "name": "Lights Out",
+  "displayName": "Lights Out",
+  "android": {
+    "package": "com.usefullapps.lightsout"
   }
 }

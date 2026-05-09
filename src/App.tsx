@@ -3,7 +3,6 @@ import {
   StyleSheet, View, Text, TouchableOpacity, Dimensions,
   SafeAreaView,
 } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 
 const { width } = Dimensions.get('window');
 const SIZES = [3, 4, 5, 6];
@@ -84,7 +83,6 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
       <Text style={styles.title}>💡 Lights Out</Text>
       <Text style={styles.subtitle}>Turn off all the lights!</Text>
 
